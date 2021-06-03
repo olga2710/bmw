@@ -1,5 +1,6 @@
 const Server ='https://jsonplaceholder.typicode.com/posts';
-const serverBtn = document.querySelector('.form__button')
+const serverBtn = document.querySelector('.form__button');
+const modalBTN = document.querySelector('.modal__button');
 
 
 
@@ -44,7 +45,7 @@ const formHendler = (form) =>{
 
         const smallElem = document.createElement('small');
 
-    if (data.name && data.mail && data.phone && (!data.name.match(/^[ ]+$/) & !data.mail.match(/^[ ]+$/) & !data.phone.match(/^[ ]+$/))){
+    if (data.name && (data.mail || data.phone) && (!data.name.match(/^[ ]+$/) & (!data.mail.match(/^[ ]+$/) || !data.phone.match(/^[ ]+$/)))){
         sentData(JSON.stringify(), 
          (id)=>{
             smallElem.textContent=('Ваша заявка № ' + id + '! В ближашее время с Вами свяжемся!');
@@ -60,9 +61,11 @@ const formHendler = (form) =>{
             setTimeout(() => {
                 smallElem.remove();
                 serverBtn.disabled=false;
+                modalBTN.disabled=false;
     
               }, 5000);
               serverBtn.disabled=true;
+              modalBTN.disabled=true;
     } else alert ('Введите данные!')
         form.reset();
         

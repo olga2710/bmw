@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     const openModal = () => {
         modalElem.classList.remove('hidden');
+        disablScroll();
     };
 
 
     const closeModal = () =>{
         modalElem.classList.add('hidden');
+        enableScroll();
 
     };
     moreElems.forEach(element => {
